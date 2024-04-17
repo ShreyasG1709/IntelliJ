@@ -1,0 +1,33 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class pr1 extends JFrame {
+
+    private JLabel jsFirstName;
+    private JTextField textField1;
+    private JButton saveButton;
+    private JPanel pr1panel;
+
+    public pr1()
+    {
+        setContentPane(pr1panel);
+        setTitle("Simple GUI App");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String firstname = textField1.getText();
+                JOptionPane.showMessageDialog(pr1.this, "Welcome " + firstname);
+
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new pr1();
+    }
+}
