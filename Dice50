@@ -1,0 +1,60 @@
+import random
+
+def roll():
+    min_value = 1
+    max_value = 6
+    roll = random.randint(min_value, max_value)
+    return roll
+
+
+while True:
+    player = input("Enter the number of player: ")
+    if player.isdigit():
+        player = int(player)
+        if 2 <= player <= 4:
+            break
+        else:
+            print("Must be between 2 to 4")
+    else:
+        print("Invalid")
+
+max_score = 50
+W = 0
+player_scores = [0 for _ in range(player)]
+#print(player_scores)
+
+while max(player_scores) < max_score:
+    for player_idx in range(player):
+        print("Player ", player_idx+1, " Turn started!")
+        print("Your total score is: ", player_scores[player_idx], "\n")
+        current_score = 0
+
+        while True:
+            should_roll = input("would you like to roll (y)?")
+            if should_roll.lower() != "y":
+                break
+            value = roll()
+
+            if value == 1:
+                print("You rolled a 1, turn done!")
+                current_score = 0
+                break
+            else:
+                current_score += value
+                print("You just rolled a:", value)
+
+            print("Your score after last roll:" , current_score)
+
+        player_scores[player_idx] += current_score
+        if player_scores[player_idx] > 50:
+            W += 1
+            print("\n","BREAKING NEWS")
+            print("You are No.", W, "to cross 50!!!!")
+        print("Total score is: ", player_scores[player_idx])
+        print("---------------------------")
+
+
+max_score = max(player_scores)
+win_idx = player_scores.index(max_score)
+print("Player number", win_idx + 1, "is winner: ", max_score)
+print("Player Scores", player_scores)
